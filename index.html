@@ -1,1 +1,196 @@
-THE LAST IDENTITY app files will be uploaded in the next commit.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="theme-color" content="#071311"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE LAST IDENTITY | Case Intelligence</title>
+<style>
+:root{--bg:#071311;--panel:#0d201c;--panel2:#102923;--line:#1e4a3d;--mint:#62f0bd;--teal:#20c997;--text:#e7fff5;--muted:#8eafa3;--amber:#ffc66d;--red:#ff7777}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#12372b 0%,#071311 45%,#050c0b 100%);color:var(--text);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+#login{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(460px,100%);padding:34px;background:#0b1d19ee;border:1px solid var(--line);border-radius:22px;box-shadow:0 25px 90px #0009}
+.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:46px;height:46px;border:1px solid var(--mint);border-radius:14px;display:grid;place-items:center;color:var(--mint);font-size:24px;box-shadow:0 0 24px #20c99733}
+h1,h2,h3,p{margin-top:0}h1{font-size:25px;letter-spacing:2px;margin-bottom:3px}h2{font-size:21px}h3{font-size:15px}.sub{color:var(--muted);font-size:12px;letter-spacing:1.5px}.muted{color:var(--muted)}.login-card p{margin:26px 0 18px;color:#b6d2c7}
+label{display:block;color:#a9c9bc;font-size:12px;margin:12px 0 6px}input,select,textarea{width:100%;background:#071612;color:var(--text);border:1px solid #285345;border-radius:9px;padding:11px 12px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--mint);box-shadow:0 0 0 3px #20c99718}
+.btn{border:1px solid #28745c;background:#123b2e;color:var(--mint);padding:10px 15px;border-radius:9px;font-weight:650}.btn:hover{background:#18513d}.btn.primary{background:linear-gradient(100deg,#16a879,#1cc99b);color:#03140e;border:0}.btn.ghost{background:transparent;border-color:#315448;color:#c5e6d9}.btn.small{padding:6px 10px;font-size:12px}.btn.warn{color:var(--amber);border-color:#745b32;background:#332817}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.presets button{font-size:12px}.login-foot{font-size:11px;color:#79998d;margin-top:20px}
+#app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:245px;background:#081713ed;border-right:1px solid var(--line);padding:22px 15px;display:flex;flex-direction:column;z-index:4}.side-brand{padding:0 9px 25px;border-bottom:1px solid #183b30}.side-brand h1{font-size:16px}.nav-label{font-size:10px;color:#668c7d;letter-spacing:2px;margin:23px 10px 9px}.nav button{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:11px 12px;margin:3px 0;border:1px solid transparent;border-radius:9px;background:transparent;color:#a8c8bb}.nav button.active,.nav button:hover{background:#123328;border-color:#225743;color:var(--mint)}.nav .ico{width:20px;text-align:center}.side-bottom{margin-top:auto;border-top:1px solid #183b30;padding:15px 8px 0;color:var(--muted);font-size:12px}
+main{margin-left:245px;padding:28px 34px 50px;max-width:1600px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px;gap:12px}.eyebrow{color:var(--mint);font-size:11px;letter-spacing:2px}.topbar h2{margin:4px 0}.user-chip{display:flex;align-items:center;gap:10px;background:#0d211b;border:1px solid var(--line);border-radius:30px;padding:7px 13px;font-size:12px}.dot{width:8px;height:8px;background:var(--mint);border-radius:50%;box-shadow:0 0 10px var(--mint)}
+.page{display:none}.page.active{display:block}.grid{display:grid;gap:15px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin:18px 0 22px}.panel,.stat{background:linear-gradient(145deg,#10251f,#0b1a16);border:1px solid var(--line);border-radius:15px;padding:18px}.stat .label{font-size:12px;color:var(--muted)}.stat .num{font-size:29px;font-weight:750;margin:8px 0 2px}.stat .hint{font-size:11px;color:#6f9b89}.two{grid-template-columns:1.25fr .75fr}.three{grid-template-columns:repeat(3,1fr)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-head h3{margin:0}.tag{display:inline-flex;align-items:center;border:1px solid #28634e;border-radius:30px;padding:3px 9px;font-size:10px;color:var(--mint);white-space:nowrap}.tag.amber{color:var(--amber);border-color:#765b30}.tag.red{color:var(--red);border-color:#733b3b}
+table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#7fa797;font-weight:600;padding:10px 8px;border-bottom:1px solid #23483b}td{padding:12px 8px;border-bottom:1px solid #17372d;color:#d1e9df}tr:last-child td{border:0}.table-wrap{overflow-x:auto}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.toolbar input{max-width:280px}.toolbar select{max-width:190px}.record-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.record{background:#0c201a;border:1px solid #204a3b;border-radius:13px;padding:15px}.record-top{display:flex;justify-content:space-between;gap:10px}.record h3{margin:0 0 7px}.record p{color:var(--muted);font-size:12px;margin:5px 0}.match-score{font-size:25px;color:var(--mint);font-weight:800}.bar{height:6px;background:#1a392e;border-radius:20px;overflow:hidden;margin:10px 0}.bar span{display:block;height:100%;background:linear-gradient(90deg,#18a879,#72f3c5)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.full{grid-column:1/-1}.form-actions{display:flex;gap:10px;margin-top:16px}.notice{border:1px solid #72592d;background:#2b2416;color:#f2d69d;padding:12px 14px;border-radius:10px;font-size:12px;margin-bottom:16px}.empty{padding:28px;text-align:center;color:var(--muted)}.activity{border-left:1px solid #2a6650;margin-left:7px;padding-left:19px}.activity-item{position:relative;padding:0 0 18px}.activity-item:before{content:"";position:absolute;left:-24px;top:5px;width:8px;height:8px;background:var(--mint);border-radius:50%}.activity-item strong{font-size:13px}.activity-item small{display:block;color:var(--muted);margin-top:3px}.footer-note{font-size:11px;color:#6d8f82;margin-top:24px;border-top:1px solid #17372d;padding-top:14px}
+.toast{position:fixed;right:22px;bottom:22px;background:#174a38;border:1px solid var(--mint);color:#eafff6;padding:12px 17px;border-radius:10px;z-index:10;box-shadow:0 10px 35px #0008}
+@media(max-width:900px){.sidebar{width:68px;padding:15px 8px}.side-brand{padding:0 3px 20px}.side-brand h1,.side-brand .sub,.nav-label,.nav button span:not(.ico),.side-bottom{display:none}.nav button{justify-content:center;padding:13px 5px}.nav .ico{font-size:18px}main{margin-left:68px;padding:22px 18px}.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:600px){main{padding:18px 12px}.topbar{align-items:flex-start;flex-direction:column}.record-grid,.three{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.stats{gap:9px}.stat{padding:13px}.stat .num{font-size:24px}}
+
+/* CYBER COMMAND INTERFACE refresh */
+body{background:radial-gradient(ellipse at 50% 0%,#06251c 0%,#020807 48%,#010403 100%);background-attachment:fixed}
+#app{background:transparent}
+.sidebar{position:relative;inset:auto;width:100%;height:auto;background:rgba(1,10,8,.94);border-right:0;border-bottom:1px solid #075b42;padding:12px 4%;display:flex;flex-direction:row;align-items:center;gap:22px;flex-wrap:wrap}
+.side-brand{padding:0;border:0;min-width:230px}.side-brand h1{font-size:15px;letter-spacing:1.5px}.side-brand .sub{font-size:9px}
+.nav-label,.side-bottom{display:none}.nav{display:flex;gap:5px;flex:1;flex-wrap:wrap}.nav button{width:auto;margin:0;padding:10px 11px;font-size:12px;border-radius:7px}.nav .ico{width:auto}
+main{margin:0 auto;padding:0 4% 55px;max-width:1500px;width:100%}
+.topbar{margin:0 -4.35% 0;padding:12px 4.35%;background:rgba(0,8,6,.92);border-bottom:1px solid #063c2c;min-height:43px}
+.topbar>div:first-child .eyebrow{font-size:10px;letter-spacing:1.4px}.topbar h2{font-size:14px;margin:2px 0}.topbar>div:first-child .muted{display:none}.user-chip{background:#03140f;border-color:#07583f}
+#page-dashboard{padding-top:30px}
+#page-dashboard .hero{position:relative;text-align:center;padding:28px 20px 32px;max-width:980px;margin:0 auto 22px}
+#page-dashboard .hero-kicker{display:inline-block;border:1px solid #08734e;border-radius:30px;padding:5px 18px;color:#35e7a8;font-size:10px;letter-spacing:1.7px;margin-bottom:25px;background:#031710}
+#page-dashboard .hero h2{font-size:clamp(34px,6vw,64px);line-height:1.05;letter-spacing:1px;margin:0 0 20px;color:#f1fff9;font-weight:900}
+#page-dashboard .hero h2 span{color:#21d99a;text-shadow:0 0 28px #13b97b55}
+#page-dashboard .hero .tagline{font-size:clamp(17px,2.5vw,27px);font-weight:700;color:#8af5c9;margin:0 0 22px}
+#page-dashboard .hero .intro{max-width:780px;margin:0 auto 23px;color:#29c98e;font-size:14px}
+#page-dashboard .hero .ethics{max-width:780px;margin:0 auto 25px;text-align:left;border:1px solid #075c41;background:#031710;padding:13px 17px;border-radius:8px;color:#8af5c9;font-size:11px}
+#page-dashboard .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0 25px}
+#page-dashboard .hero-actions .btn{padding:13px 22px;letter-spacing:.4px}
+#page-dashboard .hero-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:900px;margin:25px auto 0;text-align:left}
+#page-dashboard .hero-metrics .metric{border:1px solid #07513a;background:#03120d;padding:13px;border-radius:7px;color:#19c98b;font-size:10px}
+#page-dashboard .hero-metrics strong{display:block;color:#69f2bd;font-size:17px;margin-top:5px}
+#page-dashboard>.notice{max-width:1000px;margin:0 auto 17px}
+#page-dashboard .stats{margin-top:15px}
+.stat,.panel{background:linear-gradient(145deg,rgba(4,28,20,.97),rgba(2,12,9,.97));border-color:#07513a;border-radius:8px;box-shadow:0 8px 35px #0005}
+.btn.primary{background:linear-gradient(100deg,#08a96d,#16e0a0);box-shadow:0 0 18px #0bd38b35}
+.tag{border-radius:4px;letter-spacing:.5px}
+@media(max-width:900px){.sidebar{width:100%;height:auto;flex-direction:column;align-items:stretch;gap:10px}.nav{justify-content:center}.nav button{font-size:11px;padding:8px}.side-brand{min-width:0}.hero-metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.sidebar{padding:10px 12px}.nav{justify-content:flex-start}.nav button{font-size:10px;padding:7px}.topbar{margin:0 -12px;padding:12px}.hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}#page-dashboard .hero{padding:22px 4px}#page-dashboard .hero h2{font-size:36px}}
+
+</style>
+</head>
+<body>
+<section id="login">
+ <div class="login-card">
+  <div class="brand"><div class="brand-mark">⌁</div><div><h1>THE LAST IDENTITY</h1><div class="sub">CASE INTELLIGENCE NETWORK</div></div></div>
+  <p>Secure case coordination for missing-person and unidentified-person investigations.</p>
+  <label>Access role</label><select id="loginRole"><option>Police Officer</option><option>Forensic Expert</option><option>System Administrator</option></select>
+  <label>Demo access code</label><input id="loginCode" type="password" placeholder="Enter demo code" value="IDENTITY2026">
+  <div class="presets"><button class="btn ghost small" onclick="setRole('Police Officer')">Police preset</button><button class="btn ghost small" onclick="setRole('Forensic Expert')">Forensic preset</button><button class="btn ghost small" onclick="setRole('System Administrator')">Admin preset</button></div>
+  <button class="btn primary" style="width:100%" onclick="login()">Authenticate access →</button>
+  <div class="login-foot">DEMO ONLY · Fictional records · No real biometric or government connection</div>
+ </div>
+</section>
+<div id="app">
+<div style="background:#010806;border-bottom:1px solid #063c2c;color:#16d895;padding:6px 4%;font-size:10px;letter-spacing:.6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span>● SYSTEM STATUS: SIMULATION / DEMONSTRATION MODE</span><span>SECURITY: SYNTHETIC DATA ONLY · DEMO TIER</span></div>
+<aside class="sidebar">
+ <div class="side-brand"><div class="brand" style="gap:8px"><div class="brand-mark" style="width:34px;height:34px;font-size:18px">⌁</div><div><h1>THE LAST IDENTITY</h1><div class="sub">INTELLIGENCE SYSTEM</div></div></div></div>
+ <div class="nav-label">WORKSPACE</div>
+ <nav class="nav">
+  <button class="active" data-page="dashboard"><span class="ico">◈</span><span>Overview</span></button>
+  <button data-page="missing"><span class="ico">⌕</span><span>Missing Persons</span></button>
+  <button data-page="unidentified"><span class="ico">▣</span><span>Unidentified Cases</span></button>
+  <button data-page="matches"><span class="ico">⟷</span><span>Possible Matches</span></button>
+  <button data-page="review"><span class="ico">✓</span><span>Forensic Review</span></button>
+  <button data-page="notifications"><span class="ico">◇</span><span>Family Notification</span></button>
+  <button data-page="activity"><span class="ico">≋</span><span>Activity Log</span></button>
+ </nav>
+ <div class="side-bottom">SYSTEM STATUS <span style="color:var(--mint)">● OPERATIONAL</span><br><br>Build 1.0 · Prototype</div>
+</aside>
+<main>
+ <header class="topbar"><div><div class="eyebrow">EMERALD INTELLIGENCE / <span id="crumb">OVERVIEW</span></div><h2 id="pageTitle">Command Overview</h2><div class="muted" style="font-size:12px">A coordinated view of cases, reviews and follow-up actions.</div></div><div class="user-chip"><span class="dot"></span><span id="userRole">Police Officer</span><button class="btn ghost small" onclick="logout()">Sign out</button></div></header>
+ <section class="page active" id="page-dashboard">
+  <div class="hero">
+   <div class="hero-kicker">SIMULATION PROTOCOL // SYNTHETIC CYBER-INTELLIGENCE PROTOTYPE</div>
+   <h2>THE LAST <span>IDENTITY</span></h2>
+   <p class="tagline">“Every Identity Matters. Every Family Deserves to Know.”</p>
+   <p class="intro">An investigative cyber-intelligence architecture demonstrator designed to conceptualize missing-person case tracking, unidentified-person case review, and ethical forensic data reconciliation.</p>
+   <div class="ethics"><b>ⓘ &nbsp; ETHICAL DATA GOVERNANCE & DEMONSTRATION NOTICE</b><br>This is an educational prototype. All names, case numbers and records are fictional. It does not connect to government databases, does not collect real biometric data, and does not conduct forensic identification.</div>
+   <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('[data-page=missing]').click()">⌕ &nbsp; OPEN CASE REGISTRY →</button><button class="btn ghost" onclick="document.querySelector('[data-page=matches]').click()">⌁ &nbsp; EXPLORE SIMULATED MATCHES</button></div>
+   <div class="hero-metrics"><div class="metric">ACTIVE MISSING REPORTS<strong>03 Synthetic</strong></div><div class="metric">UNIDENTIFIED CASES<strong>02 Synthetic</strong></div><div class="metric">POSSIBLE LEADS<strong>02 Illustrative</strong></div><div class="metric">ACCESS CONTROL<strong>RBAC DEMO</strong></div></div>
+  </div>
+  <div class="notice">Prototype environment: all entries are fictional. Similarity indicators are illustrative leads only and must never be treated as proof of identity.</div>Prototype environment: all entries are fictional. Similarity indicators are illustrative leads only and must never be treated as proof of identity.</div>
+  <div class="grid stats">
+   <div class="stat"><div class="label">OPEN MISSING PERSONS</div><div class="num" id="statMissing">3</div><div class="hint">Registered demo records</div></div>
+   <div class="stat"><div class="label">UNIDENTIFIED CASES</div><div class="num" id="statCases">2</div><div class="hint">Awaiting investigation</div></div>
+   <div class="stat"><div class="label">POSSIBLE LEADS</div><div class="num" id="statMatches">2</div><div class="hint">Require authorized review</div></div>
+   <div class="stat"><div class="label">PENDING REVIEWS</div><div class="num" id="statReviews">2</div><div class="hint">Human verification required</div></div>
+  </div>
+  <div class="grid two">
+   <div class="panel"><div class="panel-head"><h3>Recent case activity</h3><span class="tag">LIVE DEMO</span></div><div class="activity" id="dashActivity"></div></div>
+   <div class="panel"><div class="panel-head"><h3>Investigation workflow</h3></div>
+    <div class="record"><div class="tag">01 · SEARCH</div><h3 style="margin-top:9px">Missing complaint lookup</h3><p>Review existing missing-person reports before escalating a new lead.</p></div>
+    <div class="record" style="margin-top:10px"><div class="tag">02 · COMPARE</div><h3 style="margin-top:9px">Possible match review</h3><p>Compare authorized case information and document uncertainty.</p></div>
+    <div class="record" style="margin-top:10px"><div class="tag amber">03 · VERIFY</div><h3 style="margin-top:9px">Human forensic verification</h3><p>Only qualified personnel can record an official determination.</p></div>
+   </div>
+  </div>
+ </section>
+ <section class="page" id="page-missing">
+  <div class="panel"><div class="panel-head"><h3>Missing Persons Registry</h3><button class="btn primary small" onclick="showForm('missing')">＋ Add record</button></div>
+   <div class="toolbar"><input id="missingSearch" placeholder="Search name, ID or location..." oninput="renderMissing()"></div><div class="table-wrap"><table><thead><tr><th>CASE ID</th><th>PERSON</th><th>AGE</th><th>LAST SEEN</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="missingRows"></tbody></table></div>
+  </div>
+ </section>
+ <section class="page" id="page-unidentified">
+  <div class="panel"><div class="panel-head"><h3>Unidentified Person Cases</h3><button class="btn primary small" onclick="showForm('case')">＋ Add case</button></div>
+   <div class="toolbar"><input id="caseSearch" placeholder="Search case ID or location..." oninput="renderCases()"></div><div class="table-wrap"><table><thead><tr><th>CASE ID</th><th>FOUND AT</th><th>DATE</th><th>EST. AGE</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="caseRows"></tbody></table></div>
+  </div>
+ </section>
+ <section class="page" id="page-matches">
+  <div class="notice">Illustrative demo scores are generated from fictional age/location similarities. They are not biometric results, evidence or identity confirmation.</div>
+  <div class="panel"><div class="panel-head"><h3>Possible Match Leads</h3><span class="tag amber">HUMAN REVIEW REQUIRED</span></div><div class="grid record-grid" id="matchCards"></div></div>
+ </section>
+ <section class="page" id="page-review">
+  <div class="panel"><div class="panel-head"><h3>Forensic Review Queue</h3><span class="tag">AUTHORIZED REVIEW</span></div>
+   <div class="notice">This prototype does not process fingerprints, eye scans, DNA or other biometrics. Record only fictional training notes here.</div>
+   <div class="table-wrap"><table><thead><tr><th>LEAD</th><th>REVIEW TYPE</th><th>ASSIGNED TO</th><th>STATUS</th><th>DECISION</th></tr></thead><tbody id="reviewRows"></tbody></table></div>
+  </div>
+ </section>
+ <section class="page" id="page-notifications">
+  <div class="panel"><div class="panel-head"><h3>Family Notification Register</h3><button class="btn primary small" onclick="showForm('notification')">＋ Log notification</button></div>
+   <div class="notice">In a real process, families must only be contacted by authorized officials after identity is formally confirmed through approved procedures. Demo entries are fictional.</div>
+   <div class="table-wrap"><table><thead><tr><th>REFERENCE</th><th>CASE</th><th>CHANNEL</th><th>RECORDED BY</th><th>STATUS</th></tr></thead><tbody id="notificationRows"></tbody></table></div>
+  </div>
+ </section>
+ <section class="page" id="page-activity">
+  <div class="panel"><div class="panel-head"><h3>System Activity Log</h3><span class="tag">LOCAL DEMO LOG</span></div><div class="activity" id="allActivity"></div></div>
+ </section>
+ <div class="footer-note">THE LAST IDENTITY · “Every Identity Matters. Every Family Deserves to Know.”<br>Educational prototype only. Not for operational policing, biometric identification or real-world case decisions.</div>
+</main></div>
+<div id="modal" class="hidden" style="position:fixed;inset:0;background:#000a;z-index:8;display:grid;place-items:center;padding:18px">
+ <div class="panel" style="width:min(560px,100%);max-height:90vh;overflow:auto">
+  <div class="panel-head"><h3 id="modalTitle">Add record</h3><button class="btn ghost small" onclick="closeForm()">✕ Close</button></div>
+  <form id="recordForm" onsubmit="saveForm(event)"><div id="formFields" class="form-grid"></div><div class="form-actions"><button class="btn primary" type="submit">Save record</button><button class="btn ghost" type="button" onclick="closeForm()">Cancel</button></div></form>
+ </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const seed = {
+ missing:[
+ {id:"MP-2026-014",name:"Ananya Rao",age:24,last:"Vijayawada",date:"2026-10-18",status:"Open"},
+ {id:"MP-2026-021",name:"Rohan Varma",age:31,last:"Guntur",date:"2026-10-29",status:"Open"},
+ {id:"MP-2026-026",name:"Meera Das",age:27,last:"Eluru",date:"2026-11-03",status:"Under review"}],
+ cases:[
+ {id:"UP-2026-008",place:"National Highway outskirts, Eluru",date:"2026-11-05",age:"25–35",status:"Pending review"},
+ {id:"UP-2026-011",place:"Railway station area, Vijayawada",date:"2026-11-09",age:"20–30",status:"Pending review"}],
+ matches:[
+ {id:"LEAD-001",mp:"MP-2026-026",up:"UP-2026-008",score:82,reason:"Illustrative age-range and nearby-location overlap",status:"Pending"},
+ {id:"LEAD-002",mp:"MP-2026-014",up:"UP-2026-011",score:74,reason:"Illustrative age-range and regional overlap",status:"Pending"}],
+ reviews:[
+ {lead:"LEAD-001",type:"Record consistency review",assignee:"Forensic desk",status:"Pending"},
+ {lead:"LEAD-002",type:"Case detail review",assignee:"Forensic desk",status:"Pending"}],
+ notifications:[],
+ activity:[{title:"Demo workspace initialized",detail:"Fictional training records loaded",time:"Today · 09:00"},{title:"Two possible leads generated",detail:"Illustrative metadata comparison only",time:"Today · 09:02"},{title:"Review queue created",detail:"Human review required before any conclusion",time:"Today · 09:03"}]
+};
+let data, role="Police Officer", formType="";
+function load(){try{data=JSON.parse(localStorage.getItem("tli_data"))||structuredClone(seed)}catch(e){data=JSON.parse(JSON.stringify(seed))}}
+function persist(){localStorage.setItem("tli_data",JSON.stringify(data));updateStats()}
+function setRole(r){document.getElementById("loginRole").value=r}
+function login(){if(document.getElementById("loginCode").value!=="IDENTITY2026"){toast("Use the demo access code shown in the project README.");return}role=document.getElementById("loginRole").value;load();document.getElementById("login").style.display="none";document.getElementById("app").style.display="block";document.getElementById("userRole").textContent=role;log("Signed in",role+" opened the demo workspace");renderAll()}
+function logout(){document.getElementById("app").style.display="none";document.getElementById("login").style.display="grid"}
+function log(title,detail){data.activity.unshift({title,detail,time:new Date().toLocaleString()});data.activity=data.activity.slice(0,30);persist()}
+function toast(t){let el=document.getElementById("toast");el.textContent=t;el.classList.remove("hidden");setTimeout(()=>el.classList.add("hidden"),2600)}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+b.dataset.page).classList.add("active");let title={dashboard:"Command Overview",missing:"Missing Persons Registry",unidentified:"Unidentified Cases",matches:"Possible Match Leads",review:"Forensic Review Queue",notifications:"Family Notification Register",activity:"System Activity Log"}[b.dataset.page];document.getElementById("pageTitle").textContent=title;document.getElementById("crumb").textContent=title.toUpperCase()}));
+function updateStats(){if(!data)return;document.getElementById("statMissing").textContent=data.missing.length;document.getElementById("statCases").textContent=data.cases.length;document.getElementById("statMatches").textContent=data.matches.length;document.getElementById("statReviews").textContent=data.reviews.filter(x=>x.status==="Pending").length}
+function renderMissing(){let q=(document.getElementById("missingSearch")?.value||"").toLowerCase();document.getElementById("missingRows").innerHTML=data.missing.filter(x=>Object.values(x).join(" ").toLowerCase().includes(q)).map(x=>`<tr><td>${x.id}</td><td>${x.name}</td><td>${x.age}</td><td>${x.last}<br><span class="muted">${x.date}</span></td><td><span class="tag">${x.status}</span></td><td><button class="btn ghost small" onclick="viewRecord('${x.id}')">View</button></td></tr>`).join("")||'<tr><td colspan="6" class="empty">No records found</td></tr>'}
+function renderCases(){let q=(document.getElementById("caseSearch")?.value||"").toLowerCase();document.getElementById("caseRows").innerHTML=data.cases.filter(x=>Object.values(x).join(" ").toLowerCase().includes(q)).map(x=>`<tr><td>${x.id}</td><td>${x.place}</td><td>${x.date}</td><td>${x.age}</td><td><span class="tag amber">${x.status}</span></td><td><button class="btn ghost small" onclick="viewRecord('${x.id}')">View</button></td></tr>`).join("")||'<tr><td colspan="6" class="empty">No records found</td></tr>'}
+function renderMatches(){document.getElementById("matchCards").innerHTML=data.matches.map(m=>`<div class="record"><div class="record-top"><span class="tag amber">${m.id}</span><span class="match-score">${m.score}%</span></div><div class="bar"><span style="width:${m.score}%"></span></div><p><b>Missing record:</b> ${m.mp}</p><p><b>Unidentified case:</b> ${m.up}</p><p>${m.reason}</p><p>Status: <span class="tag">${m.status}</span></p><button class="btn small" onclick="reviewLead('${m.id}')">Send to review</button></div>`).join("")||'<div class="empty">No leads available</div>'}
+function renderReviews(){document.getElementById("reviewRows").innerHTML=data.reviews.map((r,i)=>`<tr><td>${r.lead}</td><td>${r.type}</td><td>${r.assignee}</td><td><span class="tag ${r.status==="Completed"?"":"amber"}">${r.status}</span></td><td>${r.status==="Pending"?`<button class="btn small" onclick="completeReview(${i})">Mark reviewed</button>`:"—"}</td></tr>`).join("")||'<tr><td colspan="5" class="empty">No reviews in queue</td></tr>'}
+function renderNotifications(){document.getElementById("notificationRows").innerHTML=data.notifications.map(n=>`<tr><td>${n.ref}</td><td>${n.case}</td><td>${n.channel}</td><td>${n.by}</td><td><span class="tag">${n.status}</span></td></tr>`).join("")||'<tr><td colspan="5" class="empty">No notification records yet</td></tr>'}
+function renderActivity(){let html=data.activity.map(a=>`<div class="activity-item"><strong>${a.title}</strong><small>${a.detail} · ${a.time}</small></div>`).join("");document.getElementById("dashActivity").innerHTML=html.slice(0,1200);document.getElementById("allActivity").innerHTML=html}
+function renderAll(){updateStats();renderMissing();renderCases();renderMatches();renderReviews();renderNotifications();renderActivity()}
+function viewRecord(id){let x=[...data.missing,...data.cases].find(x=>x.id===id);if(x)toast(Object.entries(x).map(([k,v])=>k+": "+v).join(" · "))}
+function reviewLead(id){if(!data.reviews.some(x=>x.lead===id)){data.reviews.push({lead:id,type:"Metadata consistency review",assignee:"Forensic desk",status:"Pending"});log("Lead assigned for review",id);renderAll();toast("Lead added to human review queue")}else toast("This lead is already in the review queue")}
+function completeReview(i){if(role!=="Forensic Expert"&&role!=="System Administrator"){toast("Only the Forensic Expert or Admin demo role can update review status.");return}data.reviews[i].status="Completed";log("Review status updated",data.reviews[i].lead+" marked reviewed (demo only)");renderAll();toast("Review status updated")}
+function showForm(type){formType=type;let fields={missing:[["Person name","name","text"],["Age","age","number"],["Last seen location","last","text"],["Date last seen","date","date"]],case:[["Case reference","id","text"],["Found location","place","text"],["Date found","date","date"],["Estimated age range","age","text"]],notification:[["Reference ID","ref","text"],["Case reference","case","text"],["Channel","channel","select"],["Status","status","select"]]};let opts=fields[type];document.getElementById("modalTitle").textContent=type==="missing"?"Add Missing Person":type==="case"?"Add Unidentified Case":"Log Family Notification";document.getElementById("formFields").innerHTML=opts.map((f,i)=>`<div class="${i===1&&type!=="notification"?"":" "}${i===0&&type==="notification"?"":" "}"><label>${f[0]}</label>${f[2]==="select"?`<select name="${f[1]}">${(f[1]==="channel"?["Phone","In-person","Official letter"]:["Pending","Recorded after official confirmation"]).map(v=>`<option>${v}</option>`).join("")}</select>`:`<input required name="${f[1]}" type="${f[2]}" ${f[1]==="id"?"placeholder='e.g. UP-2026-014'":""}>`}</div>`).join("");document.getElementById("modal").classList.remove("hidden")}
+function closeForm(){document.getElementById("modal").classList.add("hidden")}
+function saveForm(e){e.preventDefault();let v=Object.fromEntries(new FormData(e.target));if(formType==="missing"){v.id="MP-DEMO-"+String(Date.now()).slice(-5);v.status="Open";data.missing.unshift(v);log("Missing person record added",v.id)}else if(formType==="case"){if(data.cases.some(x=>x.id===v.id)){toast("That case ID already exists.");return}v.status="Pending review";data.cases.unshift(v);log("Unidentified case added",v.id)}else{v.by=role;data.notifications.unshift(v);log("Notification record logged",v.ref)}persist();closeForm();renderAll();toast("Record saved in this browser's demo storage")}
+function showPage(p){document.querySelector(`[data-page="${p}"]`).click()}
+load();
+</script>
+<script>if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {})); }</script>
+</body></html>
